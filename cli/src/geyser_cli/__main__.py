@@ -181,6 +181,12 @@ def _parser() -> argparse.ArgumentParser:
     decide.add_argument("--expected-run-sequence", type=int, required=True)
     decide.add_argument("--binding-digest", required=True)
     decide.add_argument("--reason-code", required=True)
+    decide.add_argument(
+        "--attestation",
+        choices=("callee_consent_v1",),
+        default="",
+        help="what you confirmed, when the approval asks for it (an Agent's phone call)",
+    )
     decide.add_argument("--yes", action="store_true")
     models = commands.add_parser("models", help="this workspace's own models open to the project")
     model_commands = models.add_subparsers(dest="models_command", required=True)
@@ -445,6 +451,7 @@ def _handle_network(args: argparse.Namespace) -> Any:
                 "approval_id": args.approval_id,
                 "decision": args.decision,
                 "binding_digest": args.binding_digest,
+                **({"attestation": args.attestation} if args.attestation else {}),
             }
             _confirm(args, operation)
             decision = ApprovalDecision(
@@ -453,6 +460,7 @@ def _handle_network(args: argparse.Namespace) -> Any:
                 expected_approval_sequence=args.expected_sequence,
                 binding_digest=args.binding_digest,
                 reason_code=args.reason_code,
+                attestation=args.attestation,
             )
             return client.decide_approval(
                 args.run_id,

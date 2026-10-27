@@ -263,10 +263,27 @@ def test_sync_semantic_surface_and_headers() -> None:
             ),
             expected_run_sequence=2,
         )
+        client.decide_approval(
+            "run-1",
+            "approval-2",
+            ApprovalDecision(
+                decision_id="decision-2",
+                decision="approve",
+                expected_approval_sequence=1,
+                binding_digest=SHA,
+                reason_code="callee_agreed",
+                attestation="callee_consent_v1",
+            ),
+            expected_run_sequence=2,
+        )
     decision_requests = [request for request in requests if request.url.path.endswith("/decision")]
     assert decision_requests and all(
         request.headers["If-Match"] == '"run-v2"' for request in decision_requests
     )
+    assert [json.loads(request.content)["attestation"] for request in decision_requests] == [
+        "",
+        "callee_consent_v1",
+    ]
     assert all(
         json.loads(request.content)["expected_approval_sequence"] == 1
         for request in decision_requests

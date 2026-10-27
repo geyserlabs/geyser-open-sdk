@@ -316,6 +316,9 @@ class ApprovalDecision(StrictInput):
     expected_approval_sequence: int = Field(ge=1)
     binding_digest: str
     reason_code: str
+    # What the approver confirmed, where the tool requires it: "callee_consent_v1" for an
+    # Agent's mcp__fleet__place_call (the callee agreed to the call and it isn't marketing).
+    attestation: Literal["", "callee_consent_v1"] = ""
 
 
 class CancelRequest(StrictInput):
