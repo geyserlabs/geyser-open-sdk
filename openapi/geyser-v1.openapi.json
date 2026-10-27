@@ -76,6 +76,15 @@
         "additionalProperties": false,
         "description": "Human decision carrying optimistic approval/run preconditions.",
         "properties": {
+          "attestation": {
+            "default": "",
+            "enum": [
+              "",
+              "callee_consent_v1"
+            ],
+            "title": "Attestation",
+            "type": "string"
+          },
           "binding_digest": {
             "title": "Binding Digest",
             "type": "string"
