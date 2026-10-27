@@ -80,7 +80,7 @@ Here `client`, `run_id`, `save_cursor` and `handle_event` belong to your applica
 
 ## Decisions and errors
 
-Cancellation uses `CancelRequest(cancellation_id="can_...", expected_sequence=sequence, reason_code="...")`. Evaluation and fork requests also carry `expected_sequence`; it must agree with `If-Match`. A stale decision returns `412`. Inspect the current state before deciding again. Approvals additionally bind the exact approval and argument digest. Read `approval.requested_sequence` for `ApprovalDecision.expected_approval_sequence`; pass the current run sequence separately to `decide_approval(..., expected_run_sequence=run.sequence)`.
+Cancellation uses `CancelRequest(cancellation_id="can_...", expected_sequence=sequence, reason_code="...")`. Evaluation and fork requests also carry `expected_sequence`; it must agree with `If-Match`. A stale decision returns `412`. Inspect the current state before deciding again. Approvals additionally bind the exact approval and argument digest. Read `approval.requested_sequence` for `ApprovalDecision.expected_approval_sequence`; pass the current run sequence separately to `decide_approval(..., expected_run_sequence=run.sequence)`. Approving an Agent’s phone call (`approval.tool_name == "mcp__fleet__place_call"`) also needs `attestation="callee_consent_v1"`, your confirmation that the person being called agreed to the call and that it isn’t marketing. Without it the server refuses the approval with `approval_attestation_required`.
 
 Forks are **preview inspection records**. They create a paused child record from a checkpoint; the separate [replay API](replay.md) dispatches a deliberately new task. Do not use them as a job retry mechanism.
 
