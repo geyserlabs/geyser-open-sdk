@@ -23,7 +23,7 @@ from .structured_outcomes import (
 )
 from .urls import anthropic_base_url, openai_base_url
 
-__version__ = "0.3.3"
+__version__ = "0.3.4"
 
 __all__ = [
     "AsyncGeyserClient",
