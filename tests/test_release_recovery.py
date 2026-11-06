@@ -24,7 +24,7 @@ def test_recovery_requires_exact_tag_build(monkeypatch, wrong_source):
     monkeypatch.setenv("REUSE_RUN_ID", "123")
     monkeypatch.setattr(recovery.subprocess, "check_output", lambda *a, **kw: "a" * 40)
     jobs = ["python-distributions", "assemble",
-            "standalone-cli (macos-14, darwin-arm64)",
+            "standalone-cli (macos-15, darwin-arm64)",
             "standalone-cli (ubuntu-24.04, linux-amd64)"]
     values = {
         "actions/runs/123": {

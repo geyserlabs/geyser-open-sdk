@@ -53,7 +53,7 @@ def verify_source() -> None:
     jobs = api(f"actions/runs/{run_id}/jobs?per_page=100")["jobs"]
     required = {
         "python-distributions", "assemble",
-        "standalone-cli (macos-14, darwin-arm64)",
+        "standalone-cli (macos-15, darwin-arm64)",
         "standalone-cli (ubuntu-24.04, linux-amd64)",
     }
     passed = {job["name"] for job in jobs if job["conclusion"] == "success"}
