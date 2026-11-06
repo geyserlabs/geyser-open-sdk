@@ -3,6 +3,10 @@
 This project follows Semantic Versioning. Developer API compatibility is tracked separately by
 the date-versioned schema/API contract.
 
+## 0.3.3
+
+- Current dependencies. The standalone CLI bundles pydantic 2.14.3, platformdirs 4.14.5 and current certifi and idna; the Python packages are built with hatchling 1.33. No API or behaviour changes.
+
 ## 0.3.2
 
 - Approve an Agent’s phone call from the SDK or CLI. `ApprovalDecision` has an optional `attestation`, and `geyser approvals decide` takes `--attestation callee_consent_v1`: your confirmation that the person being called agreed to the call and that it isn’t marketing. The server requires it to approve `mcp__fleet__place_call`.

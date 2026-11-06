@@ -596,7 +596,7 @@ wheels = [
 
 [[package]]
 name = "geyser-open"
-version = "0.3.2"
+version = "0.3.3"
 source = { editable = "cli" }
 dependencies = [
     { name = "geyser-sdk" },
@@ -667,7 +667,7 @@ release = [{ name = "pyinstaller", specifier = "==6.22.3" }]
 
 [[package]]
 name = "geyser-sdk"
-version = "0.3.2"
+version = "0.3.3"
 source = { editable = "sdk/python" }
 dependencies = [
     { name = "httpx" },
