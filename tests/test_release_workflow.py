@@ -13,7 +13,7 @@ def test_pypi_projects_match_the_existing_trusted_publisher() -> None:
     assert "packages-dir: pypi-dist-open/" in workflow
     assert workflow.count("pypa/gh-action-pypi-publish@") == 2
     assert workflow.count(
-        "pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33"
+        "pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086"
     ) == 2
     assert "needs: [publish-pypi-sdk, publish-pypi-open]" in workflow
     assert "run-id: ${{ inputs.reuse_run_id }}" in workflow
