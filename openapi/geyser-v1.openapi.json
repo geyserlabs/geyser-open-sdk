@@ -80,7 +80,8 @@
             "default": "",
             "enum": [
               "",
-              "callee_consent_v1"
+              "callee_consent_v1",
+              "callee_consent_voicemail_v1"
             ],
             "title": "Attestation",
             "type": "string"
